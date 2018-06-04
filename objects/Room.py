@@ -70,29 +70,29 @@ class Room:
         if particle.coordX <= 0:
             particle.coordX = 0.0001
             particle.velX *= -1
-            particle.velX += -1 * random.uniform(0, 0.05) if particle.velX > 0 else random.uniform(0, 0.05)
+            particle.velX += -1 * random.uniform(0, 0.025) if particle.velX > 0 else random.uniform(0, 0.025)
         if particle.coordY <= 0:
             particle.coordY = 0.0001
             particle.velY *= -1
-            particle.velY += -1 * random.uniform(0, 0.05) if particle.velY > 0 else random.uniform(0, 0.05)
+            particle.velY += -1 * random.uniform(0, 0.025) if particle.velY > 0 else random.uniform(0, 0.025)
         if particle.coordZ <= 0:
             particle.coordZ = 0.0001
             particle.velZ *= -1
-            particle.velZ += -1 * random.uniform(0, 0.05) if particle.velZ > 0 else random.uniform(0, 0.05)
+            particle.velZ += -1 * random.uniform(0, 0.025) if particle.velZ > 0 else random.uniform(0, 0.025)
 
         # reverse, reduce velocity if collision with outer wall
         if particle.coordX >= MAX_DISTANCE_ROOM:
             particle.coordX = MAX_DISTANCE_ROOM - 0.0001
             particle.velX *= -1
-            particle.velX += -1 * random.uniform(0, 0.05) if particle.velX > 0 else random.uniform(0, 0.05)
+            particle.velX += -1 * random.uniform(0, 0.025) if particle.velX > 0 else random.uniform(0, 0.025)
         if particle.coordY >= MAX_DISTANCE_ROOM:
             particle.coordY = MAX_DISTANCE_ROOM - 0.0001
             particle.velY *= -1
-            particle.velY += -1 * random.uniform(0, 0.05) if particle.velY > 0 else random.uniform(0, 0.05)
+            particle.velY += -1 * random.uniform(0, 0.025) if particle.velY > 0 else random.uniform(0, 0.025)
         if particle.coordZ >= MAX_DISTANCE_ROOM:
             particle.coordZ = MAX_DISTANCE_ROOM - 0.0001
             particle.velZ *= -1
-            particle.velZ += -1 * random.uniform(0, 0.05) if particle.velZ > 0 else random.uniform(0, 0.05)
+            particle.velZ += -1 * random.uniform(0, 0.025) if particle.velZ > 0 else random.uniform(0, 0.025)
 
         # reverse, reduce velocity if collision with other particle
         newCoordinates = particle.getCoordString()
@@ -100,9 +100,9 @@ class Room:
             particle.velX *= -1
             particle.velY *= -1
             particle.velZ *= -1
-            particle.velX += -1 * random.uniform(0, 0.05) if particle.velX > 0 else random.uniform(0, 0.05)
-            particle.velY += -1 * random.uniform(0, 0.05) if particle.velY > 0 else random.uniform(0, 0.05)
-            particle.velZ += -1 * random.uniform(0, 0.05) if particle.velZ > 0 else random.uniform(0, 0.05)
+            particle.velX += -1 * random.uniform(0, 0.025) if particle.velX > 0 else random.uniform(0, 0.025)
+            particle.velY += -1 * random.uniform(0, 0.025) if particle.velY > 0 else random.uniform(0, 0.025)
+            particle.velZ += -1 * random.uniform(0, 0.025) if particle.velZ > 0 else random.uniform(0, 0.025)
 
         # store new particle coordinates
         if newCoordinates not in self.coordDict:

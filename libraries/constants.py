@@ -7,7 +7,7 @@ Description:    Constant variables for simulation
 """
 
 # initial speed of particles (meters per second)
-VELOCITY_CONST = 0.02
+VELOCITY_CONST = 0.01
 
 # number of particles in simulation
 NUM_PARTICLES = 200

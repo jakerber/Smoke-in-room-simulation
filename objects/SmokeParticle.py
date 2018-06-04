@@ -24,9 +24,9 @@ class SmokeParticle:
         self.coordZ = None
 
         # current velocities (m/s)
-        self.velX = 0.02
-        self.velY = 0.02
-        self.velZ = 0.02
+        self.velX = 0.01
+        self.velY = 0.01
+        self.velZ = 0.01
 
     def roundCoords(self):
         """round coordinates to decimal place"""

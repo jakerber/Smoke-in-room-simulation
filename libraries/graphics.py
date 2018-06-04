@@ -18,7 +18,7 @@ AXIS.tick_params(axis='both', which='major', length=8, width=2, labelsize=15)
 
 # set window title
 FIGURE = pyplot.gcf()
-FIGURE.canvas.set_window_title('Smoke In Corner of Room Simulation')
+FIGURE.canvas.set_window_title('Simulation: Smoke in the Corner of a Room')
 
 def setPlot(coordsX, coordsY, coordsZ, title):
     """plot the smoke in the room on a 3D graph"""
@@ -40,7 +40,7 @@ def setPlot(coordsX, coordsY, coordsZ, title):
 
     # set title and pause graphics
     pyplot.title(title)
-    pyplot.pause(0.05)
+    pyplot.pause(0.01)
 
 def showPlot():
     pyplot.show()
