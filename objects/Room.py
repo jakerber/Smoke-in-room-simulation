@@ -11,8 +11,8 @@ import random
 
 # import custom libraries
 sys.path.append('..')
-from libraries.constants import *
-from libraries.graphics import *
+import libraries.constants as constants
+import libraries.graphics as graphics
 
 # import smoke particle object
 from .SmokeParticle import SmokeParticle
@@ -25,12 +25,12 @@ class Room:
         self.coordDict = {}     # dictionary mapping occupied coordinates to particles indices
 
         # generate particles in room
-        for index in range(NUM_PARTICLES):
+        for index in range(constants.NUM_PARTICLES):
             newParticle = SmokeParticle()       # instantiate new particle
             newParticle.index = index
 
             # set coordinates and velocities
-            newParticle.coordX, newParticle.coordY, newParticle.coordZ = self.getRandomRoomCoordinate(MAX_DISTANCE_CORNER)
+            newParticle.coordX, newParticle.coordY, newParticle.coordZ = self.getRandomRoomCoordinate(constants.MAX_DISTANCE_CORNER)
             newParticle.velX *= random.uniform(-1, 1)
             newParticle.velY *= random.uniform(-1, 1)
             newParticle.velZ *= random.uniform(-1, 1)
@@ -43,7 +43,7 @@ class Room:
             else:
                 self.coordDict[coordinates] = set([index])
 
-    def getRandomRoomCoordinate(self, limit, digits=DISTANCE_DIGITS):
+    def getRandomRoomCoordinate(self, limit):
         """get random x, y, z coordinate in room"""
         x = random.uniform(0, limit)
         y = random.uniform(0, limit)
@@ -81,16 +81,16 @@ class Room:
             particle.velZ += -1 * random.uniform(0, 0.025) if particle.velZ > 0 else random.uniform(0, 0.025)
 
         # reverse, reduce velocity if collision with outer wall
-        if particle.coordX >= MAX_DISTANCE_ROOM:
-            particle.coordX = MAX_DISTANCE_ROOM - 0.0001
+        if particle.coordX >= constants.MAX_DISTANCE_ROOM:
+            particle.coordX = constants.MAX_DISTANCE_ROOM - 0.0001
             particle.velX *= -1
             particle.velX += -1 * random.uniform(0, 0.025) if particle.velX > 0 else random.uniform(0, 0.025)
-        if particle.coordY >= MAX_DISTANCE_ROOM:
-            particle.coordY = MAX_DISTANCE_ROOM - 0.0001
+        if particle.coordY >= constants.MAX_DISTANCE_ROOM:
+            particle.coordY = constants.MAX_DISTANCE_ROOM - 0.0001
             particle.velY *= -1
             particle.velY += -1 * random.uniform(0, 0.025) if particle.velY > 0 else random.uniform(0, 0.025)
-        if particle.coordZ >= MAX_DISTANCE_ROOM:
-            particle.coordZ = MAX_DISTANCE_ROOM - 0.0001
+        if particle.coordZ >= constants.MAX_DISTANCE_ROOM:
+            particle.coordZ = constants.MAX_DISTANCE_ROOM - 0.0001
             particle.velZ *= -1
             particle.velZ += -1 * random.uniform(0, 0.025) if particle.velZ > 0 else random.uniform(0, 0.025)
 
@@ -121,4 +121,4 @@ class Room:
             z.append(particle.coordZ)
 
         # call graphics lib to plot
-        setPlot(x, y, z, milliseconds)
+        graphics.setPlot(x, y, z, milliseconds)

@@ -9,8 +9,8 @@ Description:    Smoke in corner of the room, a simulation
 import random
 
 # import all objects and custom libraries
-from libraries.constants import *
-from libraries.graphics import *
+import libraries.constants as constants
+import libraries.graphics as graphics
 from objects.SmokeParticle import SmokeParticle
 from objects.Room import Room
 
@@ -18,15 +18,16 @@ from objects.Room import Room
 room = Room()
 
 # simulate smoke particles moving through the room
-for ms in range(NUM_MILLISECONDS + 1):
+print('running simulation...')
+for ms in range(constants.NUM_MILLISECONDS + 1):
     for index in room.particles:
         room.moveParticle(index)    # execute move
 
     # plot graphics every 100th move
     if ms % 100 == 0:
         print('time={} milliseconds'.format(ms))
-        room.plot('{} seconds elapsed'.format(str(ms / 1000), NUM_MILLISECONDS))
-room.plot('{} seconds elapsed – end of simulation'.format(NUM_MILLISECONDS / 1000))
+        room.plot('{} seconds elapsed'.format(str(ms / 1000), constants.NUM_MILLISECONDS))
+room.plot('{} seconds elapsed – end of simulation'.format(constants.NUM_MILLISECONDS / 1000))
 
 # determine how many particles are in corner
 inCorner = 0
@@ -35,4 +36,4 @@ for index in room.particles:
     if particle.isInCorner():
         inCorner += 1
 print(inCorner, 'in corner')
-showPlot()
+graphics.showPlot()

@@ -10,7 +10,8 @@ import sys
 
 # import sim constants
 sys.path.append('..')
-from libraries.constants import *
+import libraries.constants as constants
+import libraries.graphics as graphics
 
 class SmokeParticle:
     """single smoke particle object"""
@@ -30,13 +31,13 @@ class SmokeParticle:
 
     def roundCoords(self):
         """round coordinates to decimal place"""
-        self.coordX = round(self.coordX, DISTANCE_DIGITS)
-        self.coordY = round(self.coordY, DISTANCE_DIGITS)
-        self.coordZ = round(self.coordZ, DISTANCE_DIGITS)
+        self.coordX = round(self.coordX, constants.DISTANCE_DIGITS)
+        self.coordY = round(self.coordY, constants.DISTANCE_DIGITS)
+        self.coordZ = round(self.coordZ, constants.DISTANCE_DIGITS)
 
     def isInCorner(self):
         """determine if particle is in corner of room"""
-        return self.coordX < MAX_DISTANCE_CORNER and self.coordY < MAX_DISTANCE_CORNER and self.coordZ < MAX_DISTANCE_CORNER
+        return self.coordX < constants.MAX_DISTANCE_CORNER and self.coordY < constants.MAX_DISTANCE_CORNER and self.coordZ < constants.MAX_DISTANCE_CORNER
 
     def getCoordString(self):
         """get coordinates of particle as string"""

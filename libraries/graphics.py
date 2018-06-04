@@ -6,9 +6,11 @@ Date:           1 June 2018
 Description:    Custom graphics library for simulation
 """
 
+import numpy
+
+# python's 3D graph lib
 import matplotlib.pyplot as pyplot
 from mpl_toolkits.mplot3d import Axes3D
-import numpy
 
 #set display of axis
 AXIS = Axes3D(pyplot.figure())
