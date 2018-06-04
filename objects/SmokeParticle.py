@@ -10,7 +10,7 @@ import sys
 
 # import sim constants
 sys.path.append('..')
-from packages.constants import *
+from libraries.constants import *
 
 class SmokeParticle:
     """single smoke particle object"""

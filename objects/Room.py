@@ -9,10 +9,10 @@ Description:    Room class
 import sys
 import random
 
-# import custom packages
+# import custom libraries
 sys.path.append('..')
-from packages.constants import *
-from packages.graphics import *
+from libraries.constants import *
+from libraries.graphics import *
 
 # import smoke particle object
 from .SmokeParticle import SmokeParticle
@@ -20,23 +20,17 @@ from .SmokeParticle import SmokeParticle
 class Room:
     """room object"""
 
-    def __init__(self, numParticles=NUM_PARTICLES, cornerDistance=MAX_DISTANCE_CORNER, roomBounds=MAX_DISTANCE_ROOM):
-        self.numParticles = numParticles        # number of particles in the room
-        self.cornerDistance = cornerDistance    # distance to edge of room corner
-        self.roomBounds = roomBounds            # distance to end of room
-        self.particles = {}                     # particles in room
-        self.coordDict = {}                     # dictionary mapping occupied coordinates to particles
+    def __init__(self):
+        self.particles = {}     # dictionary mapping particles in room, index -> particle
+        self.coordDict = {}     # dictionary mapping occupied coordinates to particles indices
 
         # generate particles in room
-        for index in range(self.numParticles):
+        for index in range(NUM_PARTICLES):
             newParticle = SmokeParticle()       # instantiate new particle
             newParticle.index = index
 
             # set coordinates and velocities
-            newParticle.coordX, newParticle.coordY, newParticle.coordZ = self.getRandomRoomCoordinate(self.cornerDistance)
-            # newParticle.velX *= random.choice([-1, 1])
-            # newParticle.velY *= random.choice([-1, 1])
-            # newParticle.velZ *= random.choice([-1, 1])
+            newParticle.coordX, newParticle.coordY, newParticle.coordZ = self.getRandomRoomCoordinate(MAX_DISTANCE_CORNER)
             newParticle.velX *= random.uniform(-1, 1)
             newParticle.velY *= random.uniform(-1, 1)
             newParticle.velZ *= random.uniform(-1, 1)
@@ -87,16 +81,16 @@ class Room:
             particle.velZ += -1 * random.uniform(0, 0.05) if particle.velZ > 0 else random.uniform(0, 0.05)
 
         # reverse, reduce velocity if collision with outer wall
-        if particle.coordX >= self.roomBounds:
-            particle.coordX = self.roomBounds - 0.0001
+        if particle.coordX >= MAX_DISTANCE_ROOM:
+            particle.coordX = MAX_DISTANCE_ROOM - 0.0001
             particle.velX *= -1
             particle.velX += -1 * random.uniform(0, 0.05) if particle.velX > 0 else random.uniform(0, 0.05)
-        if particle.coordY >= self.roomBounds:
-            particle.coordY = self.roomBounds - 0.0001
+        if particle.coordY >= MAX_DISTANCE_ROOM:
+            particle.coordY = MAX_DISTANCE_ROOM - 0.0001
             particle.velY *= -1
             particle.velY += -1 * random.uniform(0, 0.05) if particle.velY > 0 else random.uniform(0, 0.05)
-        if particle.coordZ >= self.roomBounds:
-            particle.coordZ = self.roomBounds - 0.0001
+        if particle.coordZ >= MAX_DISTANCE_ROOM:
+            particle.coordZ = MAX_DISTANCE_ROOM - 0.0001
             particle.velZ *= -1
             particle.velZ += -1 * random.uniform(0, 0.05) if particle.velZ > 0 else random.uniform(0, 0.05)
 
@@ -128,14 +122,3 @@ class Room:
 
         # call graphics lib to plot
         setPlot(x, y, z, milliseconds)
-
-    def runSim(self):
-        """simulate smoke particles moving through a room"""
-        for ms in range(NUM_MILLISECONDS + 1):
-            for index in self.particles:
-                self.moveParticle(index)    # execute move
-
-            # plot graphics every 100th move
-            if ms % 100 == 0:
-                print('time={} milliseconds'.format(ms))
-                self.plot('{}/{} milliseconds'.format(str(ms), NUM_MILLISECONDS))
