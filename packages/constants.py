@@ -6,14 +6,20 @@ Date:           1 June 2018
 Description:    Constant variables for simulation
 """
 
-# speed of particles (meters per second)
+# initial speed of particles (meters per second)
 VELOCITY_CONST = 0.02
 
-# simulation constants
-NUM_PARTICLES = 100
+# number of particles in simulation
+NUM_PARTICLES = 200
+
+# number of milliseconds the simulation will run
 NUM_MILLISECONDS = 10000
 
-# corner of room dimensions
-MAX_DISTANCE_CORNER = 10
+# distance from corner to edge of room
 MAX_DISTANCE_ROOM = 100
+
+# distance from corner to end of corner
+MAX_DISTANCE_CORNER = 10
+
+# round x, y, z coordinates to this many decimal places
 DISTANCE_DIGITS = 4

@@ -6,7 +6,11 @@ Date:           1 June 2018
 Description:    Smoke particle class
 """
 
-from .constants import *
+import sys
+
+# import sim constants
+sys.path.append('..')
+from packages.constants import *
 
 class SmokeParticle:
     """single smoke particle object"""
