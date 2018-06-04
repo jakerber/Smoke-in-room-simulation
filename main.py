@@ -25,7 +25,6 @@ for ms in range(constants.NUM_MILLISECONDS + 1):
 
     # plot graphics every 100th move
     if ms % 100 == 0:
-        print('time={} milliseconds'.format(ms))
         room.plot('{} seconds elapsed'.format(str(ms / 1000), constants.NUM_MILLISECONDS))
 room.plot('{} seconds elapsed – end of simulation'.format(constants.NUM_MILLISECONDS / 1000))
 
